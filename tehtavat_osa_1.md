@@ -86,4 +86,59 @@ select country.name from goal, goal_reached, game, airport, country where airpor
 ============================================================================================================================================================================================================================================================================================================================================================================================================
 
 
+JOIN HARJOITUKSET
 
+teht.1
+
+select country.name as "country name", airport.name as "airport name"
+from country
+inner join airport on airport.iso_country = country.iso_country 
+where country.name = "Finland"
+and scheduled_service = "yes";
+![image](https://github.com/user-attachments/assets/6adcd7b5-8e39-492c-869f-f56d7412fd7b)
+
+teht.2 
+
+select screen_name, name 
+from game
+inner join airport on airport.ident = game.location;
+![image](https://github.com/user-attachments/assets/96d87255-33d9-461e-b252-3a53069f27fa)
+
+teht. 3
+
+select screen_name, country.name
+from game
+inner join airport on airport.ident = game.location
+inner join country on airport.iso_country = country.iso_country;
+![image](https://github.com/user-attachments/assets/d5b92107-85b0-4da0-9469-c458459c34cd)
+
+teht. 4
+
+select airport.name, screen_name
+from airport 
+left join game on ident = location
+where name like '%Hels%';
+![image](https://github.com/user-attachments/assets/52d11647-48d4-413b-8103-787b26ff55e9)
+
+teht. 5
+
+select name, screen_name 
+from goal
+left join goal_reached on goal.id = goal_reached.goal_id
+left join game on game.id = goal_reached.game_id;
+![image](https://github.com/user-attachments/assets/1f9dfb29-2439-4f04-8948-af987abd0a69)
+
+
+==========================================================================================================================================================================================================================================================================================================================================================================================================
+
+Sisäkysely harjoitukset
+
+teht. 1
+
+select name
+from country
+where iso_country in (
+select iso_country 
+from airport
+where name like 'Satsuma%');
+![image](https://github.com/user-attachments/assets/dbe6204e-d57d-47d6-a1cd-01318ecddee7)
